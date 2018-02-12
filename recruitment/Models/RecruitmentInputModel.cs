@@ -6,7 +6,7 @@ using System.Web;
 
 namespace recruitment.Models
 {
-    public class RecruitmentViewModel
+    public class RecruitmentInputModel
     {
         [Required]
         [Display(Name = "First Name")]
@@ -26,6 +26,7 @@ namespace recruitment.Models
         [RegularExpression("^\\d{1,4}-\\d{2,3}-\\d{3,9}$", ErrorMessage = "The phone field does not have a valid number")]
         public string phone { get; set; }
 
+        [DataType(DataType.DateTime)]
         [Display(Name = "Birtdate")]
         public DateTime birtdate;
 
@@ -49,7 +50,5 @@ namespace recruitment.Models
         //campo de imagen 1 mega
 
         //archivos 5 megas
-
-
     }
 }

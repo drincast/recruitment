@@ -4,7 +4,7 @@
     ViewBag.Title = "Recruitment Sancrisoft";
 }
 
-<h2>Form Recruitment</h2>
+<h2>Recruitment Form</h2>
 
 @using (Html.BeginForm("Register", "Register", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -52,6 +52,34 @@
         @Html.LabelFor(m => m.biography, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.biography, new { @class = "form-control", @maxlength = "50" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.streetAddress, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.streetAddress, new { @class = "form-control", @maxlength = "200" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.city, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.city, new { @class = "form-control"})
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.country, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.country, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.postalCode, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.postalCode, new { @class = "form-control" })
         </div>
     </div>
 

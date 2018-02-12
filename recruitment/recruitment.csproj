@@ -164,14 +164,21 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RecruitmentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\RecruitmentInputModel.cs" />
     <Compile Include="Models\RecruitmentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DB1.mdf" />
+    <Content Include="App_Data\DB1_log.ldf">
+      <DependentUpon>DB1.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\DBRecruitments.mdf" />
     <Content Include="App_Data\DBRecruitments_log.ldf">
       <DependentUpon>DBRecruitments.mdf</DependentUpon>
@@ -212,6 +219,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Recruitment\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
