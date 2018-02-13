@@ -14,7 +14,40 @@ namespace recruitment.Controllers
         // GET: Recruitment
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                var positions = (from e in this.db.positions
+                                 where e.noActive == false
+                                 select new
+                                 {
+                                     id = e.id,
+                                     name = e.name
+                                 }).ToList()
+                                 .Select(x => new Position()
+                                 {
+                                     id = x.id,
+                                     name = x.name
+                                 });
+
+                //var positions = this.db.positions
+                //.Where(e => e.noActive == false)
+                //.Select(e => new Position()
+                //{
+                //    id = e.id,
+                //    name = e.name,
+                //    noActive = e.noActive
+                //}).ToList();
+
+                var recruitment = new RecruitmentInputModel()
+                {
+                    lstPositions = new SelectList(positions, "id", "name")
+                };
+                return View(recruitment);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpPost]

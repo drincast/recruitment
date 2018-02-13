@@ -27,6 +27,53 @@ namespace Recruitment.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            CreatePositiosDemo(context);
+        }
+
+        private void CreatePositiosDemo(Recruitment.Data.ApplicationDbContext context)
+        {
+            try
+            {
+                //var position = from a in context.positions
+                //               where a.noActive == false
+                //               select a
+
+                var position = context.positions
+                               .Where(a => a.noActive == false)
+                               .ToList();
+
+                if (position.Count <= 0)
+                {
+                    context.positions.Add(new Position()
+                    {
+                        name = "Web Development (front-end)",
+                        noActive = false
+                    });
+
+                    context.positions.Add(new Position()
+                    {
+                        name = "Web Development (back-end)",
+                        noActive = false
+                    });
+
+                    context.positions.Add(new Position()
+                    {
+                        name = "API Development",
+                        noActive = false
+                    });
+
+                    context.positions.Add(new Position()
+                    {
+                        name = "Mobile Development",
+                        noActive = false
+                    });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

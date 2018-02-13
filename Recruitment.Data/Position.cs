@@ -13,5 +13,9 @@ namespace Recruitment.Data
         public string name { get; set; }
 
         public bool noActive { get; set; }
+
+        public Position()
+        {
+        }
     }
 }

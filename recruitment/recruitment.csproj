@@ -170,6 +170,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\PositionViewModel.cs" />
     <Compile Include="Models\RecruitmentInputModel.cs" />
     <Compile Include="Models\RecruitmentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

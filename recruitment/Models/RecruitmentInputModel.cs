@@ -1,13 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+//using Recruitment.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace recruitment.Models
 {
     public class RecruitmentInputModel
     {
+        [Required]
+        [Display(Name = "Position")]
+        public int idPosition { get; set; }
+
+        //private readonly List<>
+        public IEnumerable<SelectListItem> lstPositions;
+
         [Required]
         [Display(Name = "First Name")]
         [MaxLength(50)]
@@ -31,6 +40,7 @@ namespace recruitment.Models
         public DateTime birtdate;
 
         [MaxLength(500)]
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Biography")]
         public string biography { get; set; }
 
