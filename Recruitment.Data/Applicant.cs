@@ -21,11 +21,29 @@ namespace Recruitment.Data
         [Phone]
         public string phone { get; set; }
 
+        [Required]
         public DateTime birtdate;
         
+        [Required]
         [MaxLength(500)]
         public string biography { get; set; }
 
-        public int idPosition { get; set; }
+        [Required]
+        [MaxLength(200)]
+        public string streetAddress { get; set; }
+
+        [Required]
+        public string city { get; set; }
+
+        [Required]
+        public string country { get; set; }
+
+        public string postalCode { get; set; }
+
+        [Required]
+        [MaxLength(200)]
+        public string position { get; set; }
+
+        public string urlPhoto { get; set; }
     }
 }

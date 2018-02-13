@@ -11,8 +11,9 @@ namespace recruitment.Models
     public class RecruitmentInputModel
     {
         [Required]
+        [MaxLength(200)]
         [Display(Name = "Position")]
-        public int idPosition { get; set; }
+        public string position { get; set; }
 
         //private readonly List<>
         public IEnumerable<SelectListItem> lstPositions;
@@ -35,6 +36,8 @@ namespace recruitment.Models
         [RegularExpression("^\\d{1,4}-\\d{2,3}-\\d{3,9}$", ErrorMessage = "The phone field does not have a valid number")]
         public string phone { get; set; }
 
+        [Required]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.DateTime)]
         [Display(Name = "Birtdate")]
         public DateTime birtdate;
