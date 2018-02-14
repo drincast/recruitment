@@ -8,7 +8,9 @@
 
     }
     @Html.TextBox("", String.Format("{0:dd/MM/yyyy}", dt.ToShortDateString()),
-     new { @class = "datefield form-control text-box single-line", type = "string" })
+     new { @class = "datefield form-control text-box single-line",
+         type = "string", id = ViewData.TemplateInfo.GetFullHtmlFieldName(""), name = ViewData.TemplateInfo.GetFullHtmlFieldName("")
+     })
     //datefield
 } 
 
