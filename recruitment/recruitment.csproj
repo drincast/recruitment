@@ -222,6 +222,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Recruitment\Create2.cshtml" />
     <Content Include="Views\Recruitment\Create.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
