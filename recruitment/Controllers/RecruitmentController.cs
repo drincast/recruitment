@@ -63,7 +63,13 @@ namespace recruitment.Controllers
                     email = model.email,
                     firstName = model.firstName,
                     lastName = model.lastName,
-                    phone = model.phone                    
+                    phone = model.phone,
+                    city = model.city,
+                    country = model.country,
+                    position = model.position,
+                    postalCode = model.postalCode,
+                    streetAddress = model.streetAddress,
+                    urlPhoto = ""
                 };
 
                 this.db.applicants.Add(e);
