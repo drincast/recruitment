@@ -62,6 +62,8 @@ namespace recruitment.Models
         public string postalCode { get; set; }
 
         //campo de imagen 1 mega
+        public byte[] photoData { get; set; }
+        public string photoMimeType { get; set; }
 
         //archivos 5 megas
     }

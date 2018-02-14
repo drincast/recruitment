@@ -8,6 +8,10 @@ namespace recruitment.Models
 {
     public class RecruitmentViewModel
     {
+        [MaxLength(200)]
+        [Display(Name = "Position")]
+        public string position { get; set; }
+
         [Required]
         [Display(Name = "First Name")]
         [MaxLength(50)]
@@ -30,6 +34,7 @@ namespace recruitment.Models
         public DateTime birtdate;
 
         [MaxLength(500)]
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Biography")]
         public string biography { get; set; }
 
@@ -45,6 +50,10 @@ namespace recruitment.Models
 
         [Display(Name = "Postal code")]
         public string postalCode { get; set; }
+
+        //campo de imagen 1 mega
+        public byte[] photoData { get; set; }
+        public string photoMimeType { get; set; }
 
         //campo de imagen 1 mega
 

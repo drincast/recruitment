@@ -44,6 +44,7 @@ namespace Recruitment.Data
         [MaxLength(200)]
         public string position { get; set; }
 
-        public string urlPhoto { get; set; }
+        public byte[] photoData { get; set; }
+        public string photoMimeType { get; set; }
     }
 }

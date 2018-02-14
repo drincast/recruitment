@@ -38,9 +38,12 @@ namespace recruitment.Controllers
                 //    noActive = e.noActive
                 //}).ToList();
 
+                //IEnumerable<SelectListItem> lstPositions = new SelectList(positions, "id", "name");
+                //ViewData["lstPositions"] = lstPositions;
+
                 var recruitment = new RecruitmentInputModel()
                 {
-                    lstPositions = new SelectList(positions, "id", "name")
+                    lstPositions = new SelectList(positions, "name", "name")
                 };
                 return View(recruitment);
             }
@@ -50,32 +53,75 @@ namespace recruitment.Controllers
             }
         }
 
+        public FileContentResult GetImage()
+        {
+            var obj = (from e in this.db.applicants
+                       where !e.photoMimeType.Equals("")
+                       select new RecruitmentInputModel
+                       {
+                           biography = e.biography,                           
+                           email = e.email,
+                           firstName = e.firstName,
+                           lastName = e.lastName,
+                           phone = e.phone,
+                           city = e.city,
+                           country = e.country,
+                           position = e.position,
+                           postalCode = e.postalCode,
+                           streetAddress = e.streetAddress,
+                           photoMimeType = e.photoMimeType,
+                           photoData = e.photoData
+                       }).FirstOrDefault();
+
+            if (obj != null)
+            {
+                return File(obj.photoData, obj.photoMimeType);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RecruitmentInputModel model)
+        public ActionResult Create(RecruitmentInputModel model, HttpPostedFileBase image = null)
         {
             if (model != null && this.ModelState.IsValid)
             {
-                var e = new Applicant()
+                if(image != null)
                 {
-                    biography = model.biography,
-                    birtdate = model.birtdate,
-                    email = model.email,
-                    firstName = model.firstName,
-                    lastName = model.lastName,
-                    phone = model.phone,
-                    city = model.city,
-                    country = model.country,
-                    position = model.position,
-                    postalCode = model.postalCode,
-                    streetAddress = model.streetAddress,
-                    urlPhoto = ""
-                };
+                    if(image.ContentLength <= 1000000)
+                    {
+                        var e = new Applicant()
+                        {
+                            biography = model.biography,
+                            birtdate = model.birtdate,
+                            email = model.email,
+                            firstName = model.firstName,
+                            lastName = model.lastName,
+                            phone = model.phone,
+                            city = model.city,
+                            country = model.country,
+                            position = model.position,
+                            postalCode = model.postalCode,
+                            streetAddress = model.streetAddress,
+                            photoMimeType = image.ContentType,
+                            photoData = new byte[image.ContentLength]
+                        };
 
-                this.db.applicants.Add(e);
-                this.db.SaveChanges();
+                        image.InputStream.Read(e.photoData, 0, image.ContentLength);
 
-                return this.RedirectToAction("My");
+                        this.db.applicants.Add(e);
+                        this.db.SaveChanges();
+
+                        return this.RedirectToAction("GetImage");
+                    }
+                    else
+                    {
+                        return this.RedirectToAction("Create", model);
+                    }
+                }
             }
 
             return this.View(model);
