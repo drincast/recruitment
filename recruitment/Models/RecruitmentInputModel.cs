@@ -36,10 +36,10 @@ namespace recruitment.Models
         [RegularExpression("^\\d{1,4}-\\d{2,3}-\\d{3,9}$", ErrorMessage = "The phone field does not have a valid number")]
         public string phone { get; set; }
 
-        [Required(ErrorMessage = "The field Birtdate is required.")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        [DataType(DataType.DateTime)]
-        [RegularExpression("^\\d[0-31]{2}-\\d[0-12]{2}-\\d{4}$", ErrorMessage = "The Birtdate field does not have a valid Date")]
+        //[Required(ErrorMessage = "The field Birtdate is required.")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        //[DataType(DataType.DateTime)]
+        //[RegularExpression("^\\d[0-31]{2}-\\d[0-12]{2}-\\d{4}$", ErrorMessage = "The Birtdate field does not have a valid Date")]
         [Display(Name = "Birtdate")]
         public DateTime birtdate;
 
