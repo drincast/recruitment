@@ -15,7 +15,7 @@ namespace recruitment.Controllers
     {
         static async Task SendMail(string message)
         {
-            var apiKey = Environment.GetEnvironmentVariable("");
+            var apiKey = Environment.GetEnvironmentVariable("jj");
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("drincast@gmail.com", "Example User");
             var subject = "Sending with SendGrid is Fun";
