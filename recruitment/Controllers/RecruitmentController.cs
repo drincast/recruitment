@@ -1,9 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading.Tasks;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using recruitment.Models;
 using Recruitment.Data;
 
@@ -11,8 +13,21 @@ namespace recruitment.Controllers
 {
     public class RecruitmentController : BaseController
     {
+        static async Task SendMail(string message)
+        {
+            var apiKey = Environment.GetEnvironmentVariable("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");
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress("drincast@gmail.com", "Example User");
+            var subject = "Sending with SendGrid is Fun";
+            var to = new EmailAddress("coinrocrypto@gmail.com", "Example User");
+            var plainTextContent = "and easy to do anywhere, even with C#";
+            var htmlContent = "<strong>and easy to do anywhere, even with C#</strong>";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+        }
+
         // GET: Recruitment
-        public ActionResult Create()
+        public ActionResult Create(RecruitmentInputModel model)
         {
             try
             {
@@ -45,6 +60,12 @@ namespace recruitment.Controllers
                 {
                     lstPositions = new SelectList(positions, "name", "name")
                 };
+
+                if(model != null)
+                {
+
+                }
+
                 return View(recruitment);
             }
             catch (Exception ex)
@@ -83,6 +104,11 @@ namespace recruitment.Controllers
             }
         }
 
+        public ActionResult MessajeApplying(string email)
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(RecruitmentInputModel model, HttpPostedFileBase image = null)
@@ -115,10 +141,25 @@ namespace recruitment.Controllers
                         this.db.applicants.Add(e);
                         this.db.SaveChanges();
 
-                        return this.RedirectToAction("GetImage");
+                        try
+                        {
+                            SendMail("w").Wait();
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                        
+
+                        
+
+                        //return this.RedirectToAction("GetImage");
+                        TempData["applyEmail"] = e.email;
+                        return this.RedirectToAction("MessajeApplying");
                     }
                     else
                     {
+                        TempData["msj01"] = "The file size must be less than or equal to 1 mb";
                         return this.RedirectToAction("Create", model);
                     }
                 }
